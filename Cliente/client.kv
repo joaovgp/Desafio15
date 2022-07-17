@@ -1,0 +1,176 @@
+#:kivy 2.1.0
+<Client>:
+    orientation: 'vertical'
+    background_color: 0, 0, 0, 1
+    BoxLayout:
+        canvas.before:
+            Color:
+                rgba: (0.8,0.8,0.8, 0.8)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+            Color:
+                rgba: (0, 0, 0, 1)
+            Rectangle:
+                size: self.width-10, self.height-10
+                pos: self.x+5, self.y+5
+        size_hint: 1, 0.2
+        padding: '20sp', '10sp', '20sp', '10sp'
+        spacing: '10sp'
+        BoxLayout:
+            canvas.before:
+                Color:
+                    rgba: (0.8,0.8,0.8, 0.8)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                Color:
+                    rgba: (0, 0, 0, 1)
+                Rectangle:
+                    size: self.width-4, self.height-4
+                    pos: self.x+2, self.y+2
+            padding: '10sp'
+            spacing: '20sp'
+            Label:
+                text: 'IP'
+                size_hint: 0.05, 1
+                font_size: '20sp'
+            TextInput:
+                id: ip
+                write_tab: False
+                multiline: False
+                focus: 1
+                size_hint: 0.2, 0.5
+                pos_hint: {'x': 0, 'center_y': 0.5}
+        BoxLayout:
+            canvas.before:
+                Color:
+                    rgba: (0.8,0.8,0.8, 0.8)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                Color:
+                    rgba: (0, 0, 0, 1)
+                Rectangle:
+                    size: self.width-4, self.height-4
+                    pos: self.x+2, self.y+2
+            padding: '10sp'
+            Label:
+                text: 'Porta'
+                size_hint: 0.05, 1
+                font_size: '20sp'
+            TextInput:
+                id: port
+                write_tab: False
+                multiline: False
+                on_text_validate: root.connect()
+                focus: 1
+                size_hint: 0.2, 0.5
+                pos_hint: {'x': 0, 'center_y': 0.5}
+        BoxLayout:
+            padding: '10sp', 0, '10sp', 0
+            size_hint: 0.5, 1
+            Button:
+                size_hint: 0.6, 0.6
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                text: "Conectar"
+                on_release: root.connect()
+    BoxLayout:
+        orientation: 'vertical'
+        id: window
+        canvas.before:
+            Color:
+                rgba: (0.8,0.8,0.8, 0.8)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+            Color:
+                rgba: 245/255, 15/255, 51/255, 0.15
+            Rectangle:
+                size: self.width-10, self.height-10
+                pos: self.x+5, self.y+5
+        BoxLayout:
+            orientation: 'horizontal'
+            padding: '15sp', '10sp', '15sp', '0sp'
+            spacing: '10sp'
+            size_hint: 0.95, 0.6
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: '30sp'
+                padding: '30sp'
+                Label:
+                    text: "Endereço:"
+                    font_size: '20sp'
+                    size_hint: 0.1, 0.1
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                TextInput:
+                    id: address
+                    write_tab: False
+                    multiline: False
+                    focus: 1
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    size_hint: 0.4, 0.4
+            GridLayout:
+                rows: 2
+                cols: 2
+                padding: '20sp'
+                spacing: '10sp'
+                Button:
+                    text: "Bobina"
+                    id: bobina
+                    disabled: True
+                    on_release: root.schedule(1)
+                Button:
+                    text: "Entrada Discreta"
+                    id: ent_disc
+                    disabled: True
+                    on_release: root.schedule(2)
+                Button:
+                    text: "Registrador de Entrada"
+                    id: reg_in
+                    disabled: True
+                    on_release: root.schedule(4)
+                Button:
+                    text: "Registrador de Saída"
+                    id: reg_out
+                    disabled: True
+                    on_release: root.schedule(3)
+        BoxLayout:
+            orientation: 'horizontal'
+            padding: '30sp'
+            spacing: '20sp'
+            size_hint: 0.5, 0.35
+            pos_hint: {'center_x': 0.3, 'center_y': 0.5}
+            CheckBox:
+                canvas.before:
+                    Color:
+                        rgba: (0,0,0, 1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                    Color:
+                        rgba: (0.8,0.8,0.8, 1)
+                    Rectangle:
+                        size: self.width-6, self.height-6
+                        pos: self.x+3, self.y+3
+                id: chkbox
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                size_hint: 0.08, 1
+                color: 0, 0, 0, 1
+            Label:
+                text: 'Leitura Contínua?'
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+                font_size: '20sp'
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Leitura:'
+                font_size: '40sp'
+                size_hint: 1, 0.5
+            Label:
+                id: result
+                text: 'Não Conectado'
+                font_size: '25sp'
